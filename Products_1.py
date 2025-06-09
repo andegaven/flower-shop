@@ -9,7 +9,7 @@ from typing import List, Optional
 app = FastAPI()
 
 # Глобальные переменные для соединения с RabbitMQ (лучше использовать конфиг)
-RABBITMQ_HOST = "localhost"
+RABBITMQ_HOST = "amqp://user1:password1@77.91.86.135:5672/vhost_user1"
 QUEUE_BOUQUET_UPDATES = "bouquet_updates"
 QUEUE_SEARCH_LOGS = "search_logs"
 
