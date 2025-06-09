@@ -2,3 +2,6 @@ aio-pika
 aiomysql
 PyJWT
 bcrypt
+fastapi
+pydantic
+passlib
