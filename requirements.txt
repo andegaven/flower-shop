@@ -1,0 +1,4 @@
+aio-pika
+aiomysql
+PyJWT
+bcrypt

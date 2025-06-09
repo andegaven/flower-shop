@@ -14,9 +14,9 @@ JWT_ALGORITHM = "HS256"
 DB_CONFIG = {
     "host": "77.91.86.135",
     "port": 3306,
-    "user": "isp_p_Mikhailova",
+    "user": "isp_p_Lashkov",
     "password": "12345",
-    "db": "isp_p_Mikhailova",
+    "db": "isp_p_Lashkov",
 }
 
 # Подключение базы данных
@@ -107,7 +107,7 @@ async def main():
 
     await queue.consume(lambda message: handle_auth_message(message, db_pool, channel))
     print("Auth service is running...")
-    await asyncio.Future()  # run forever
+    await asyncio.Future()
 
 if __name__ == "__main__":
     asyncio.run(main())
