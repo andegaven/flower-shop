@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 # Блок переменных
 SQLALCHEMY_DATABASE_URL = "mysql+pymysql://isp_p_Lashkov:12345@77.91.86.135/isp_p_Lashkov"
-RABBITMQ_URL = "amqp://guest:guest@localhost/"
+RABBITMQ_URL = "amqp://user1:password1@77.91.86.135:5672/vhost_user1"
 EXCHANGE_NAME = "flower_shop_events"
 QUEUE_NAME = "catalog_events"
 
