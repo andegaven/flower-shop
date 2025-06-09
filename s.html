@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Flower Nook</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffd6b8;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    header {
+      background-color: #fff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+    nav a {
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #d84f4f;
+    }
+    .btn-login {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .btn-category {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+    .main-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #d84f4f;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .flowers-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: start;
+    }
+    .flower-card {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: calc(33.333% - 13.333px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .flower-card img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-bottom: 12px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .flower-name {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 16px;
+      min-height: 42px;
+    }
+    .btn-buy {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .btn-buy:hover {
+      background-color: #d84f4f;
+    }
+    .reviews {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .review {
+      background-color: #fff;
+      padding: 15px 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      font-style: italic;
+      position: relative;
+    }
+    .review::before {
+      content: "“";
+      font-size: 40px;
+      color: #d84f4f;
+      position: absolute;
+      left: 15px;
+      top: 5px;
+      font-family: serif;
+    }
+    .review-author {
+      margin-top: 10px;
+      font-weight: 700;
+      font-style: normal;
+      text-align: right;
+      color: #555;
+    }
+    form {
+      max-width: 700px;
+      margin: 0 auto 50px;
+      display: flex;
+      gap: 10px;
+    }
+    textarea {
+      flex-grow: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 80px;
+      font-family: Arial, sans-serif;
+    }
+    button[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      min-width: 120px;
+    }
+    button[type="submit"]:hover {
+      background-color: #d84f4f;
+    }
+    footer {
+      background-color: #fff;
+      padding: 20px 15px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      border-top: 1px solid #ddd;
+    }
+    footer .footer-links {
+      margin-bottom: 10px;
+    }
+    footer .footer-links a {
+      margin: 0 8px;
+      color: #555;
+      font-weight: 500;
+    }
+    footer .footer-links a:hover {
+        color: #d84f4f;
+    }
+    @media (max-width: 768px) {
+      .flowers-grid {
+        flex-direction: column;
+      }
+      .flower-card {
+        width: 100%;
+      }
+      nav {
+        display: none; /* скрываем навигацию на мобильных */
+      }
+      header {
+        justify-content: space-between;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a href="#" class="logo" aria-label="The Flower Nook">
+        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Логотип цветочного магазина" />
+        The Flower Nook
+    </a>
+    <nav aria-label="Главное меню">
+      <a href="#">Главная страница</a>
+      <a href="#">Магазин</a>
+      <a href="#">Рассказать друзьям</a>
+      <a href="#">Корзина</a>
+    </nav>
+    <button class="btn-login" aria-label="Войти в аккаунт">Войти в аккаунт</button>
+  </header>
+
+  <main>
+    <h1>The Flower Nook</h1>
+    <p class="subtitle">Букеты, которые дарят радость и помогают выразить ваши чувства быстро и доступно</p>
+    <button class="btn-category" aria-label="Категории и цены">Категории и цены</button>
+
+    <img src="C:\\Users\\student\\Desktop\\flower\\images\\фион.jpg" alt="Большой букет розовых пионов" class="main-image" />
+
+    <section aria-labelledby="seasonal-flowers-title">
+      <h2 id="seasonal-flowers-title">Цветы этого сезона</h2>
+      <div class="flowers-grid">
+        <article class="flower-card">
+          <img srс ="C:\Users\student\Desktop\flower\images\пион.webp" alt="Розовые пионы" />
+          <div class="flower-name">Букет розовых пионов</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=300&q=80" alt="Букет белых цветов" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1465188035480-5d0b3b7e7c8a?auto=format&fit=crop&w=300&q=80" alt="Разноцветный букет" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="last-call-graduation-title">
+      <h2 id="last-call-graduation-title">Последний звонок и выпускной</h2>
+      <div class="flowers-grid">
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=300&q=80" alt="Красный букет" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1556911073-52527ac437f5?auto=format&fit=crop&w=300&q=80" alt="Бледно-розовый букет" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1526483360610-d59b3f1c0c1e?auto=format&fit=crop&w=300&q=80" alt="Белый и розовый букет" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="sale-title">
+      <h2 id="sale-title">РАСПРОДАЖА</h2>
+      <div class="flowers-grid">
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1510626176961-4b37f6a4f6a0?auto=format&fit=crop&w=300&q=80" alt="Красные розы" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=300&q=80" alt="Большой букет красных роз" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="https://images.unsplash.com/photo-1518976024611-0b7cd8dfd2f7?auto=format&fit=crop&w=300&q=80" alt="Синие розы" />
+          <div class="flower-name">Нежный букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Отзывы</h2>
+      <div class="reviews">
+        <blockquote class="review">
+          Букет прекрасный! Очень понравился!
+          <div class="review-author">— Светлана</div>
+        </blockquote>
+        <blockquote class="review">
+          Норм, мне понравилось.
+          <div class="review-author">— Тимофей Александров</div>
+        </blockquote>
+        <blockquote class="review">
+          Хорошие свежие цветы!
+          <div class="review-author">— Антонина</div>
+        </blockquote>
+      </div>
+    </section>
+
+    <section aria-labelledby="feedback-title">
+      <h2 id="feedback-title">Напишите ваше мнение сюда</h2>
+      <form action="#" method="post" aria-label="Форма отправки отзыва">
+        <textarea name="feedback" placeholder="Ваш отзыв..." required aria-required="true"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-links">
+      <a href="#">Главная</a> | 
+      <a href="#">Магазин</a> | 
+      <a href="#">Контакты</a> | 
+      <a href="#">Политика конфиденциальности</a>
+    </div>
+    <div>&copy; 2025 The Flower Nook. Все права защищены.</div>
+  </footer>
+</body>
+</html>
