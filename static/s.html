@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<<<<<<< HEAD
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Flower Nook</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #ffd6b8;
+      color: #333;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    header {
+      background-color: #ffffff;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #ddd;
+    }
+=======
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Flower Nook - Главная</title>
+  <style>
+    :root {
+      --primary: #e83e8c;
+      --primary-dark: #d63384;
+      --secondary: #6c757d;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --white: #ffffff;
+      --background: #fff5f7;
+      --text: #212529;
+      --border: #dee2e6;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+>>>>>>> 04510b1 (new functions)
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+<<<<<<< HEAD
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .logo img {
+      width: 30px;
+      height: 30px;
+    }
+    nav {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+    }
+    nav a {
+      color: #333;
+      font-weight: 500;
+    }
+    nav a:hover {
+      color: #d84f4f;
+    }
+    .btn-login {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    main {
+      max-width: 900px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+    h1 {
+      font-weight: 700;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .subtitle {
+      font-size: 16px;
+      color: #555;
+      margin-bottom: 15px;
+    }
+    .btn-category {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 25px;
+      display: inline-block;
+    }
+    .main-image {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      border-radius: 6px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    }
+    section {
+      margin-bottom: 50px;
+    }
+    section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #d84f4f;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+    .flowers-grid {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      justify-content: start;
+    }
+    .flower-card {
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      width: calc(33.333% - 13.333px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 15px;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .flower-card img {
+      max-width: 100%;
+      border-radius: 5px;
+      margin-bottom: 12px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .flower-name {
+      font-weight: 600;
+      margin-bottom: 10px;
+      font-size: 16px;
+      min-height: 42px;
+    }
+    .btn-buy {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s;
+    }
+    .btn-buy:hover {
+      background-color: #d84f4f;
+    }
+    .reviews {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .review {
+      background-color: #fff;
+      padding: 15px 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      margin-bottom: 15px;
+      font-style: italic;
+      position: relative;
+    }
+    .review::before {
+      content: "“";
+      font-size: 40px;
+      color: #d84f4f;
+=======
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 15px 10px 40px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236c757d" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 15px center;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.25);
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    nav {
+      background-color: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      padding: 12px 20px;
+      white-space: nowrap;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 20px;
+      transition: var(--transition);
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    main {
+      padding: 20px 0;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 40px 0;
+      background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                  url('https://images.unsplash.com/photo-1527061011665-3652c757a4d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=686&q=80') no-repeat center center;
+      background-size: cover;
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--dark);
+      max-width: 700px;
+      margin: 0 auto 25px;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .product-description {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .product-actions .btn {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+
+    .reviews-section {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .review-card {
+      background-color: var(--light);
+      padding: 20px;
+      border-radius: 8px;
+      position: relative;
+    }
+
+    .review-card::before {
+      content: "“";
+      font-size: 50px;
+      color: var(--primary);
+>>>>>>> 04510b1 (new functions)
+      position: absolute;
+      left: 15px;
+      top: 5px;
+      font-family: serif;
+<<<<<<< HEAD
+    }
+    .review-author {
+      margin-top: 10px;
+      font-weight: 700;
+      font-style: normal;
+      text-align: right;
+      color: #555;
+    }
+    form {
+      max-width: 700px;
+      margin: 0 auto 50px;
+      display: flex;
+      gap: 10px;
+    }
+    textarea {
+      flex-grow: 1;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      resize: vertical;
+      min-height: 80px;
+      font-family: Arial, sans-serif;
+    }
+    button[type="submit"] {
+      background-color: #000;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: background-color 0.3s;
+      min-width: 120px;
+    }
+    button[type="submit"]:hover {
+      background-color: #d84f4f;
+    }
+    footer {
+      background-color: #fff;
+      padding: 20px 15px;
+      font-size: 14px;
+      color: #555;
+      text-align: center;
+      border-top: 1px solid #ddd;
+    }
+    footer .footer-links {
+      margin-bottom: 10px;
+    }
+    footer .footer-links a {
+      margin: 0 8px;
+      color: #555;
+      font-weight: 500;
+    }
+    footer .footer-links a:hover {
+        color: #d84f4f;
+    }
+    @media (max-width: 768px) {
+      .flowers-grid {
+        flex-direction: column;
+      }
+      .flower-card {
+        width: 100%;
+      }
+      nav {
+        display: none; /* скрываем навигацию на мобильных */
+      }
+      header {
+        justify-content: space-between;
+=======
+      opacity: 0.3;
+    }
+
+    .review-text {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      font-style: italic;
+    }
+
+    .review-author {
+      font-weight: 700;
+      text-align: right;
+      color: var(--secondary);
+    }
+
+    .feedback-form {
+      background-color: var(--white);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+
+    .feedback-form textarea {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 15px;
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 40px 0 20px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 992px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-bar {
+        max-width: 100%;
+        margin: 10px 0;
+      }
+      
+      .user-actions {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+      
+      .reviews-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .product-actions {
+        flex-direction: column;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+>>>>>>> 04510b1 (new functions)
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+<<<<<<< HEAD
+    <a href="#" class="logo" aria-label="The Flower Nook">
+        <img src="images\профиль.jpg" alt="Логотип цветочного магазина" />
+        The Flower Nook
+    </a>
+    <nav aria-label="Главное меню">
+      <a href="#">Главная страница</a>
+      <a href="#">Категории и поиск</a>
+      <a href="#">Корзина</a>
+    </nav>
+    <button class="btn-login" aria-label="Войти в аккаунт">Войти в аккаунт</button>
+  </header>
+
+  <main>
+    <h1>The Flower Nook</h1>
+    <p class="subtitle">Букеты, которые дарят радость и помогают выразить ваши чувства быстро и доступно</p>
+    <button class="btn-category" aria-label="Категории и цены">Категории и поиск</button>
+
+    <img src="images\\фион.jpg" alt="Большой букет розовых пионов" class="main-image" />
+
+    <section aria-labelledby="seasonal-flowers-title">
+      <h2 id="seasonal-flowers-title">Цветы этого сезона</h2>
+      <div class="flowers-grid">
+        <article class="flower-card">
+          <img src="images\пион.jpg" alt="Букет розовых пионов" />
+          <div class="flower-name">Букет розовых пионов для вас</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="images\лилия.jpg" alt="Букет белых лилий" />
+          <div class="flower-name">Нежный букет белых лилий</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="images\яркий.jpg" alt="Яркий букет" />
+          <div class="flower-name">Яркий букет для яркой тебя</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="last-call-graduation-title">
+      <h2 id="last-call-graduation-title">Последний звонок и выпускной</h2>
+      <div class="flowers-grid">
+        <article class="flower-card">
+          <img src="images\выпускной1.jpg" alt="Розовый букет" />
+          <div class="flower-name">Розовый букет для выпускниц</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="images\выпуск2.jpg" alt="Бледно-розовый букет" />
+          <div class="flower-name">Лучшее к выпускному</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="images\выпуск3.jpg" alt="Розовый букет" />
+          <div class="flower-name">Идеальный букет на последний звонок</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="sale-title">
+      <h2 id="sale-title">РАСПРОДАЖА</h2>
+      <div class="flowers-grid">
+        <article class="flower-card">
+          <img src="images\розы2.jpg" alt="Большой букет розовых роз" />
+          <div class="flower-name">Нежный букет розовых роз</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="images\розы.jpg" alt="Большой букет красных роз" />
+          <div class="flower-name">Красные розы - хит сезона</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+        <article class="flower-card">
+          <img src="images\розы3.jpg" alt="Большой букет красных роз" />
+          <div class="flower-name">Элегантный синий букет</div>
+          <button class="btn-buy" aria-label="Купить нежный букет">В корзину</button>
+        </article>
+      </div>
+    </section>
+
+    <section aria-labelledby="reviews-title">
+      <h2 id="reviews-title">Отзывы</h2>
+      <div class="reviews">
+        <blockquote class="review">
+          Букет прекрасный! Очень понравился!
+          <div class="review-author">— Тоня Ситова</div>
+        </blockquote>
+        <blockquote class="review">
+          Норм, мне понравилось.
+          <div class="review-author">— Александер Ананасов</div>
+        </blockquote>
+        <blockquote class="review">
+          Хорошие свежие цветы!
+          <div class="review-author">— Элеанора Баскова</div>
+        </blockquote>
+      </div>
+    </section>
+
+    <section aria-labelledby="feedback-title">
+      <h2 id="feedback-title">Напишите ваше мнение сюда</h2>
+      <form action="#" method="post" aria-label="Форма отправки отзыва">
+        <textarea name="feedback" placeholder="Ваш отзыв..." required aria-required="true"></textarea>
+        <button type="submit">Отправить</button>
+=======
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="https://via.placeholder.com/40" alt="The Flower Nook Logo">
+        The Flower Nook
+      </a>
+      
+      <div class="search-bar">
+        <input type="text" placeholder="Поиск цветов..." id="searchInput">
+      </div>
+      
+      <div class="user-actions">
+        <button class="btn btn-outline">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+          </svg>
+          Корзина
+        </button>
+        <button class="btn btn-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+          </svg>
+          Войти
+        </button>
+      </div>
+    </div>
+    
+    <nav>
+      <div class="container nav-container">
+        <a href="#" class="nav-link active">Главная</a>
+        <a href="#" class="nav-link">Категории</a>
+        <a href="#" class="nav-link">Конструктор букетов</a>
+        <a href="#" class="nav-link">Корзина</a>
+        <a href="#" class="nav-link">Политика конфиденциальности</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>The Flower Nook</h1>
+      <p>Букеты, которые приятно дарить и получать. Красиво и быстро доставляем</p>
+      <button class="btn btn-primary">Категории и цены</button>
+    </section>
+
+    <section>
+      <h2 class="section-title">Цветы этого сезона</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="images\\пионы.jpg" alt="Букет розовых пионов" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Букет розовых пионов</h3>
+            <p class="product-description">Нежные пионы в красивой упаковке. Идеальный подарок для особых случаев.</p>
+            <div class="product-price">4 200 ₽</div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <img src="images\\лилии.jpg" alt="Букет белых лилий" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Букет белых лилий</h3>
+            <p class="product-description">Элегантные белые лилии с зеленью. Символ чистоты и благородства.</p>
+            <div class="product-price">3 900 ₽</div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <img src="images\\цветной.jpg" alt="Яркий букет" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Яркий букет</h3>
+            <p class="product-description">Смесь сезонных цветов ярких оттенков. Дарит радость и хорошее настроение.</p>
+            <div class="product-price">3 200 ₽</div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="section-title">РАСПРОДАЖА</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <img src="images\\розы красные.jpg" alt="Букет роз" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Букет роз</h3>
+            <p class="product-description">Красные розы по специальной цене. Ограниченное предложение.</p>
+            <div class="product-price">2 900 ₽ <span style="text-decoration: line-through; color: var(--secondary); margin-left: 8px; font-size: 0.9rem;">3 800 ₽</span></div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <img src="images\\малиновый.jpg" alt="Экзотический букет" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Экзотический букет</h3>
+            <p class="product-description">Уникальные цветы по специальной цене. Только до конца месяца.</p>
+            <div class="product-price">3 200 ₽ <span style="text-decoration: line-through; color: var(--secondary); margin-left: 8px; font-size: 0.9rem;">4 500 ₽</span></div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="product-card">
+          <img src="images\\подарочный набор.jpg" alt="Подарочный набор" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">Подарочный набор</h3>
+            <p class="product-description">Цветы с уценкой. Идеальное соотношение цены и качества.</p>
+            <div class="product-price">3 800 ₽ <span style="text-decoration: line-through; color: var(--secondary); margin-left: 8px; font-size: 0.9rem;">5 100 ₽</span></div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="reviews-section">
+      <h2 class="section-title">Отзывы</h2>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <p class="review-text">Букет прекрасный! Очень понравился!</p>
+          <div class="review-author">— Тоня Ситова</div>
+        </div>
+        
+        <div class="review-card">
+          <p class="review-text">Норм, мне понравилось.</p>
+          <div class="review-author">— Александер Ананасов</div>
+        </div>
+        
+        <div class="review-card">
+          <p class="review-text">Хорошие свежие цветы!</p>
+          <div class="review-author">— Элеанора Баскова</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="feedback-form">
+      <h2 class="section-title">Напишите ваше мнение сюда</h2>
+      <form>
+        <textarea placeholder="Ваш отзыв..." required></textarea>
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px;">Отправить</button>
+>>>>>>> 04510b1 (new functions)
+      </form>
+    </section>
+  </main>
+
+  <footer>
+<<<<<<< HEAD
+    <div class="footer-links">
+      <a href="#">Главная</a> | 
+      <a href="#">Категории</a> | 
+      <a href="#">Корзина</a> | 
+      <a href="#">Политика конфиденциальности</a>
+    </div>
+    <div>&copy; 2025 The Flower Nook. Все права защищены.</div>
+  </footer>
+=======
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Магазин</h3>
+          <ul class="footer-links">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#">Категории</a></li>
+            <li><a href="#">Конструктор букетов</a></li>
+            <li><a href="#">Корзина</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Информация</h3>
+          <ul class="footer-links">
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Доставка и оплата</a></li>
+            <li><a href="#">Политика конфиденциальности</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Контакты</h3>
+          <ul class="footer-links">
+            <li><a href="tel:+78517466598">+7 (851) 746-65-98</a></li>
+            <li><a href="mailto:info@flowernook.com">info@flowernook.com</a></li>
+            <li>Москва, ул. Цветочная, 15</li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2025 The Flower Nook. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Добавление товаров в корзину
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+          const productCard = this.closest('.product-card');
+          const productName = productCard.querySelector('.product-title').textContent;
+          alert(`Товар "${productName}" добавлен в корзину!`);
+        });
+      });
+      
+      // Просмотр деталей товара
+      document.querySelectorAll('.view-details').forEach(button => {
+        button.addEventListener('click', function() {
+          const productCard = this.closest('.product-card');
+          const productName = productCard.querySelector('.product-title').textContent;
+          alert(`Просмотр деталей товара "${productName}"`);
+        });
+      });
+      
+      // Поиск товаров
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        document.querySelectorAll('.product-card').forEach(card => {
+          const productName = card.querySelector('.product-title').textContent.toLowerCase();
+          if (productName.includes(searchTerm)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+>>>>>>> 04510b1 (new functions)
+</body>
+</html>
