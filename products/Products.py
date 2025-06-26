@@ -9,6 +9,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.exc import IntegrityError
 import logging
 import threading
+from contextlib import asynccontextmanager
 
 # Настройка логгирования
 logging.basicConfig(level=logging.INFO)
@@ -19,6 +20,15 @@ SQLALCHEMY_DATABASE_URL = "mysql+pymysql://isp_p_Lashkov:12345@77.91.86.135/isp_
 RABBITMQ_URL = "amqp://user1:password1@77.91.86.135:5672/vhost_user1"
 EXCHANGE_NAME = "flower_shop_events"
 QUEUE_NAME = "catalog_events"
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Startup code
+    yield
+    # Shutdown code
+    if rabbitmq_channel and rabbitmq_channel.is_open:
+        rabbitmq_channel.close()
+    logger.info("RabbitMQ connection closed")
 
 # Создание объектов FastAPI и SQLAlchemy
 app = FastAPI(title="Products Service API", version="1.0.0")
@@ -301,9 +311,4 @@ def add_flower_to_bouquet(
         logger.error(f"Error adding flower to bouquet: {e}")
         raise HTTPException(status_code=400, detail="Failed to add flower to bouquet")
 
-# Обработчик для graceful shutdown
-@app.on_event("shutdown")
-def shutdown_event():
-    if rabbitmq_channel and rabbitmq_channel.is_open:
-        rabbitmq_channel.close()
-    logger.info("RabbitMQ connection closed")
+
