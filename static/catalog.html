@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FlowerNook - Каталог цветов</title>
+  <style>
+    :root {
+      --primary: #e83e8c;
+      --primary-dark: #d63384;
+      --secondary: #6c757d;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --white: #ffffff;
+      --background: #fff5f7;
+      --text: #212529;
+      --border: #dee2e6;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 15px 10px 40px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236c757d" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 15px center;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.25);
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    nav {
+      background-color: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      padding: 12px 20px;
+      white-space: nowrap;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 20px;
+      transition: var(--transition);
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    main {
+      padding: 20px 0;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .product-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .product-description {
+      color: var(--secondary);
+      font-size: 0.9rem;
+      margin-bottom: 15px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-price {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .product-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .product-actions .btn {
+      flex: 1;
+      text-align: center;
+      padding: 8px;
+      font-size: 0.9rem;
+    }
+
+    .category-section {
+      display: none;
+    }
+
+    .category-section.active {
+      display: block;
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 40px 0 20px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .back-to-main {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .back-to-main:hover {
+      background-color: var(--primary-dark);
+    }
+
+    @media (max-width: 992px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-bar {
+        max-width: 100%;
+        margin: 10px 0;
+      }
+      
+      .user-actions {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .products-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      .product-actions {
+        flex-direction: column;
+      }
+      
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="images\\лого.jpg" alt="FlowerNook Logo">
+        FlowerNook
+      </a>
+      
+      <div class="search-bar">
+        <input type="text" placeholder="Поиск цветов..." id="searchInput">
+      </div>
+      
+      <div class="user-actions">
+        <button class="btn btn-outline" onclick="location.href='cart.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+          </svg>
+          Корзина
+        </button>
+        <button class="btn btn-primary" onclick="location.href='registration_list.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+          </svg>
+          Войти
+        </button>
+      </div>
+    </div>
+    
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="catalog.html" class="nav-link active">Каталог</a>
+        <a href="constructor.html" class="nav-link">Конструктор букетов</a>
+        <a href="cart.html" class="nav-link">Корзина</a>
+        <a href="profile.html" class="nav-link">Профиль</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="category-section active" id="bouquet">
+      <h2 class="section-title">Букеты</h2>
+      <div class="products-grid" id="bouquet-container"></div>
+    </div>
+    
+    <div class="category-section" id="basket">
+      <h2 class="section-title">Цветы в корзинах</h2>
+      <div class="products-grid" id="basket-container"></div>
+    </div>
+    
+    <div class="category-section" id="gift">
+      <h2 class="section-title">Подарки</h2>
+      <div class="products-grid" id="gift-container"></div>
+    </div>
+    
+    <div class="category-section" id="sale">
+      <h2 class="section-title">Распродажа</h2>
+      <div class="products-grid" id="sale-container"></div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Магазин</h3>
+          <ul class="footer-links">
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Доставка и оплата</a></li>
+            <li><a href="#">Акции</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Каталог</h3>
+          <ul class="footer-links">
+            <li><a href="#" class="footer-category" data-category="bouquet">Букеты</a></li>
+            <li><a href="#" class="footer-category" data-category="basket">Цветы в корзинах</a></li>
+            <li><a href="#" class="footer-category" data-category="gift">Подарки</a></li>
+            <li><a href="#" class="footer-category" data-category="sale">Распродажа</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Контакты</h3>
+          <ul class="footer-links">
+            <li><a href="tel:+79517464858">+7 (951) 746-48-58</a></li>
+            <li><a href="mailto:info@flowernook.com">info@flowernook.com</a></li>
+            <li>Москва, ул. Цветочная, 15</li>
+            <li>Ежедневно с 9:00 до 21:00</li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Подписаться</h3>
+          <p>Узнавайте первыми о новых поступлениях и акциях:</p>
+          <form class="subscribe-form">
+            <input type="email" placeholder="Ваш email" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid var(--border);">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Подписаться</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 FlowerNook. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const products = [
+      {
+        id: 1,
+        name: "Красные розы",
+        image: "images\\розы красные.jpg",
+        description: "Букет из 25 алых роз в классической упаковке. Идеальный подарок для выражения чувств.",
+        price: "3 500 ₽",
+        category: "bouquet"
+      },
+      {
+        id: 2,
+        name: "Нежность пионов",
+        image: "images\\пионы.jpg",
+        description: "Пышные пионы нежно-розового оттенка. Создают атмосферу романтики и уюта.",
+        price: "4 200 ₽",
+        category: "bouquet"
+      },
+      {
+        id: 3,
+        name: "Синие розы",
+        image: "images\\синие розы.jpg",
+        description: "Эксклюзивные синие розы в элегантной упаковке. Подчеркнет вашу индивидуальность.",
+        price: "4 800 ₽",
+        category: "bouquet"
+      },
+      {
+        id: 4,
+        name: "Белые лилии",
+        image: "images\\лилии.jpg",
+        description: "Элегантный букет из белых лилий. Символ чистоты и благородства.",
+        price: "3 900 ₽",
+        category: "bouquet"
+      },
+      {
+        id: 5,
+        name: "Смешанный букет",
+        image: "images\\цветной.jpg",
+        description: "Яркий микс из сезонных цветов. Дарит радость и хорошее настроение.",
+        price: "3 200 ₽",
+        category: "bouquet"
+      },
+      
+      {
+        id: 6,
+        name: "Розы в корзине",
+        image: "images\\корзина2.jpg",
+        description: "Элегантная композиция из роз в плетеной корзине. Для особых случаев.",
+        price: "5 500 ₽",
+        category: "basket"
+      },
+      {
+        id: 7,
+        name: "Весенняя корзина",
+        image: "images\\корзина1.jpg",
+        description: "Разноцветные цветы в красивой корзине. Украсит любой интерьер.",
+        price: "4 800 ₽",
+        category: "basket"
+      },
+      {
+        id: 8,
+        name: "Экзотика в корзине",
+        image: "images\\корзина3.jpg",
+        description: "Экзотические цветы в оригинальной корзине. Для ценителей необычного.",
+        price: "6 200 ₽",
+        category: "basket"
+      },
+      {
+        id: 9,
+        name: "Мини корзина с тюльпанами",
+        image: "images\\корзина5.jpg",
+        description: "Небольшая корзина с яркими тюльпанами. Идеально для небольшого подарка.",
+        price: "3 500 ₽",
+        category: "basket"
+      },
+      {
+        id: 10,
+        name: "Корзина с орхидеями",
+        image: "images\\корзина4.jpg",
+        description: "Роскошные орхидеи в стильной корзине. Элитный подарок.",
+        price: "7 800 ₽",
+        category: "basket"
+      },
+      
+      {
+        id: 11,
+        name: "Подарочный набор Люкс",
+        image: "images\\подарочный набор.jpg",
+        description: "Эксклюзивный набор: цветы, шампанское и шоколад премиум класса.",
+        price: "8 500 ₽",
+        category: "gift"
+      },
+      {
+        id: 12,
+        name: "Медвежонок с розами",
+        image: "images\\медведь.jpg",
+        description: "Мягкий плюшевый медвежонок с букетом роз. Для самых любимых.",
+        price: "5 200 ₽",
+        category: "gift"
+      },
+      {
+        id: 13,
+        name: "Цветы и конфеты",
+        image: "images\\цветы и конфеты.jpg",
+        description: "Композиция из цветов с коробкой элитных конфет. Классический подарок.",
+        price: "4 800 ₽",
+        category: "gift"
+      },
+      {
+        id: 14,
+        name: "Цветы и открытка",
+        image: "images\\открытка.jpg",
+        description: "Букет цветов с индивидуальной поздравительной открыткой.",
+        price: "4 300 ₽",
+        category: "gift"
+      },
+      {
+        id: 15,
+        name: "Цветы и парфюм",
+        image: "images\\парфюм.jpg",
+        description: "Роскошный букет с флаконом элитных духов. Незабываемый подарок.",
+        price: "9 900 ₽",
+        category: "gift"
+      },
+      
+      {
+        id: 16,
+        name: "Розы со скидкой",
+        image: "images\\розовые розы.jpg",
+        description: "Красные розы по специальной цене. Ограниченное предложение.",
+        price: "2 900 ₽",
+        oldPrice: "3 800 ₽",
+        category: "sale"
+      },
+      {
+        id: 17,
+        name: "Весенний микс",
+        image: "images\\выпускной1.jpg",
+        description: "Яркий букет из весенних цветов. Специальная цена только этой недели.",
+        price: "2 500 ₽",
+        oldPrice: "3 200 ₽",
+        category: "sale"
+      },
+      {
+        id: 18,
+        name: "Летний букет",
+        image: "images\\белый.jpg",
+        description: "Сочные летние цветы по акционной цене. Успейте купить!",
+        price: "2 700 ₽",
+        oldPrice: "3 500 ₽",
+        category: "sale"
+      },
+      {
+        id: 19,
+        name: "Корзина со скидкой",
+        image: "images\\корзина6.jpg",
+        description: "Цветочная корзина по специальной цене. Только до конца месяца.",
+        price: "4 200 ₽",
+        oldPrice: "5 600 ₽",
+        category: "sale"
+      },
+      {
+        id: 20,
+        name: "Подарок уцененный",
+        image: "images\\уцен.jpg",
+        description: "Подарочный набор с небольшой уценкой. Идеальное соотношение цены и качества.",
+        price: "3 800 ₽",
+        oldPrice: "5 100 ₽",
+        category: "sale"
+      }
+    ];
+
+    function createProductCard(product) {
+      const oldPriceHtml = product.oldPrice 
+        ? `<span style="text-decoration: line-through; color: var(--secondary); margin-left: 8px; font-size: 0.9rem;">${product.oldPrice}</span>`
+        : '';
+      
+      return `
+        <div class="product-card" data-id="${product.id}" data-name="${product.name.toLowerCase()}" data-category="${product.category}">
+          <img src="${product.image}" alt="${product.name}" class="product-image">
+          <div class="product-info">
+            <h3 class="product-title">${product.name}</h3>
+            <p class="product-description">${product.description}</p>
+            <div class="product-price">${product.price}${oldPriceHtml}</div>
+            <div class="product-actions">
+              <button class="btn btn-outline add-to-cart">В корзину</button>
+              <button class="btn btn-primary view-details">Подробнее</button>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function renderProducts() {
+      const bouquetContainer = document.getElementById('bouquet-container');
+      const basketContainer = document.getElementById('basket-container');
+      const giftContainer = document.getElementById('gift-container');
+      const saleContainer = document.getElementById('sale-container');
+      
+      bouquetContainer.innerHTML = '';
+      basketContainer.innerHTML = '';
+      giftContainer.innerHTML = '';
+      saleContainer.innerHTML = '';
+      
+      products.forEach(product => {
+        const cardHtml = createProductCard(product);
+        
+        if (product.category === 'bouquet') {
+          bouquetContainer.innerHTML += cardHtml;
+        } else if (product.category === 'basket') {
+          basketContainer.innerHTML += cardHtml;
+        } else if (product.category === 'gift') {
+          giftContainer.innerHTML += cardHtml;
+        } else if (product.category === 'sale') {
+          saleContainer.innerHTML += cardHtml;
+        }
+      });
+    }
+
+    function setupCategorySwitching() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      const footerLinks = document.querySelectorAll('.footer-category');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+          
+          document.querySelectorAll('.category-section').forEach(section => {
+            section.classList.remove('active');
+          });
+          const category = this.dataset.category;
+          document.getElementById(category).classList.add('active');
+        });
+      });
+
+      footerLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          const category = this.dataset.category;
+          
+          navLinks.forEach(l => l.classList.remove('active'));
+          document.querySelector(`.nav-link[data-category="${category}"]`).classList.add('active');
+ 
+          document.querySelectorAll('.category-section').forEach(section => {
+            section.classList.remove('active');
+          });
+          document.getElementById(category).classList.add('active');
+
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+    }
+
+    function setupProductButtons() {
+      document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+          const productCard = this.closest('.product-card');
+          const productId = productCard.dataset.id;
+          const productName = productCard.querySelector('.product-title').textContent;
+          
+          alert(`Товар "${productName}" добавлен в корзину!`);
+        });
+      });
+    
+      document.querySelectorAll('.view-details').forEach(button => {
+        button.addEventListener('click', function() {
+          const productCard = this.closest('.product-card');
+          const productId = productCard.dataset.id;
+          console.log(`Viewing details for product ${productId}`);
+        });
+      });
+    }
+
+    function setupSearch() {
+      const searchInput = document.getElementById('searchInput');
+      
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const activeSection = document.querySelector('.category-section.active').id;
+        const productsToSearch = document.querySelectorAll(`#${activeSection} .product-card`);
+        
+        productsToSearch.forEach(product => {
+          const productName = product.dataset.name;
+          
+          if (productName.includes(searchTerm)) {
+            product.style.display = 'block';
+          } else {
+            product.style.display = 'none';
+          }
+        });
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      renderProducts();
+      setupCategorySwitching();
+      setupProductButtons();
+      setupSearch();
+      
+      // Устанавливаем активной ссылку "Каталог" по умолчанию
+      document.querySelector('.nav-link[href="catalog.html"]').classList.add('active');
+    });
+  </script>
+</body>
+</html>

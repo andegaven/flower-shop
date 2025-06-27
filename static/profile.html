@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Профиль пользователя - FlowerNook</title>
+  <style>
+    :root {
+      --primary: #e83e8c;
+      --primary-dark: #d63384;
+      --secondary: #6c757d;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --white: #ffffff;
+      --background: #fff5f7;
+      --text: #212529;
+      --border: #dee2e6;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 15px 10px 40px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236c757d" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 15px center;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.25);
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    nav {
+      background-color: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      padding: 12px 20px;
+      white-space: nowrap;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 20px;
+      transition: var(--transition);
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    main {
+      padding: 20px 0;
+    }
+
+    .profile-container {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .profile-content {
+      background-color: var(--white);
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .user-info-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .profile-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-right: 20px;
+      border: 3px solid var(--primary);
+    }
+
+    .user-info-text {
+      flex: 1;
+    }
+
+    .user-info-text h2 {
+      font-size: 1.5rem;
+      margin-bottom: 5px;
+      color: var(--primary);
+    }
+
+    .user-info-text p {
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .user-details {
+      margin-bottom: 30px;
+    }
+
+    .detail-row {
+      display: flex;
+      margin-bottom: 15px;
+      padding-bottom: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .detail-label {
+      width: 200px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .detail-value {
+      flex: 1;
+      color: var(--secondary);
+    }
+
+    .edit-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      margin-top: 10px;
+    }
+
+    .edit-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .orders-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .order-card {
+      background-color: var(--light);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: var(--shadow);
+    }
+
+    .order-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .order-id {
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    .order-date {
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    .order-status {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .status-delivered {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .status-processing {
+      background-color: #fff3cd;
+      color: #856404;
+    }
+
+    .status-cancelled {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    .order-products {
+      margin-bottom: 10px;
+    }
+
+    .order-product {
+      display: flex;
+      margin-bottom: 8px;
+    }
+
+    .order-product img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+
+    .order-product-info {
+      flex: 1;
+    }
+
+    .order-product-name {
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .order-product-price {
+      color: var(--secondary);
+      font-size: 0.9rem;
+    }
+
+    .order-total {
+      text-align: right;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 40px 0 20px;
+      margin-top: 40px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 992px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-bar {
+        max-width: 100%;
+        margin: 10px 0;
+      }
+      
+      .user-actions {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .user-info-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .profile-avatar {
+        margin-right: 0;
+        margin-bottom: 15px;
+      }
+
+      .detail-row {
+        flex-direction: column;
+      }
+
+      .detail-label {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="images\\лого.jpg" alt="FlowerNook Logo">
+        FlowerNook
+      </a>
+      
+      <div class="search-bar">
+        <input type="text" placeholder="Поиск в магазине..." id="searchInput">
+      </div>
+      
+      <div class="user-actions">
+        <button class="btn btn-outline" onclick="location.href='cart.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+          </svg>
+          Корзина
+        </button>
+        <button class="btn btn-primary" onclick="location.href='registration_list.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+          </svg>
+          Войти
+        </button>
+      </div>
+    </div>
+    
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="catalog.html" class="nav-link">Каталог</a>
+        <a href="constructor.html" class="nav-link">Конструктор букетов</a>
+        <a href="cart.html" class="nav-link">Корзина</a>
+        <a href="profile.html" class="nav-link active">Профиль</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <div class="profile-container">
+      <div class="profile-content">
+        <div class="user-info-header">
+          <img src="images\\профиль.png" alt="Аватар" class="profile-avatar">
+          <div class="user-info-text">
+            <h2>Имя</h2>
+            <p>Пользователь</p>
+          </div>
+        </div>
+        
+        <div class="user-details">
+          <div class="detail-row">
+            <div class="detail-label">Ваш адрес</div>
+            <div class="detail-value"></div>
+          </div>
+          <button class="edit-btn">Редактировать профиль</button>
+        </div>
+        
+        <div class="orders-section">
+          <h2 class="section-title">История заказов</h2>
+          <div class="orders-grid">
+            <div class="order-card">
+              <div class="order-header">
+                <span class="order-id">Заказ #12345</span>
+                <span class="order-date">15.06.2025</span>
+              </div>
+              <span class="order-status status-delivered">Доставлен</span>
+              <div class="order-products">
+                <div class="order-product">
+                  <img src="images\\розы красные.jpg" alt="Розы">
+                  <div class="order-product-info">
+                    <div class="order-product-name">Букет из красных роз</div>
+                    <div class="order-product-price">3 500 ₽ × 1</div>
+                  </div>
+                </div>
+              </div>
+              <div class="order-total">Итого: 3 500 ₽</div>
+            </div>
+            
+            <div class="order-card">
+              <div class="order-header">
+                <span class="order-id">Заказ #12344</span>
+                <span class="order-date">10.06.2025</span>
+              </div>
+              <span class="order-status status-processing">В обработке</span>
+              <div class="order-products">
+                <div class="order-product">
+                  <img src="images\\пионы.jpg" alt="Пионы">
+                  <div class="order-product-info">
+                    <div class="order-product-name">Букет из пионов</div>
+                    <div class="order-product-price">4 200 ₽ × 1</div>
+                  </div>
+                </div>
+                <div class="order-product">
+                  <img src="images\\ягоды.jpg" alt="Ягоды">
+                  <div class="order-product-info">
+                    <div class="order-product-name">Декоративные ягоды</div>
+                    <div class="order-product-price">350 ₽ × 1</div>
+                  </div>
+                </div>
+              </div>
+              <div class="order-total">Итого: 4 550 ₽</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="favorites-section">
+          <h2 class="section-title">Избранные товары</h2>
+          <p>Здесь будут отображаться ваши избранные товары.</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>The Flower Nook</h3>
+          <ul class="footer-links">
+            <li><a href="#">Каталог</a></li>
+            <li><a href="#">Доставка</a></li>
+            <li><a href="#">О нас</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Цветы этого сезона</h3>
+          <ul class="footer-links">
+            <li><a href="#">Последний звонок и выпускной</a></li>
+            <li><a href="#">РАСПРОДАЖА</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Контакты</h3>
+          <ul class="footer-links">
+            <li><a href="tel:+79517466598">+7 (951) 746-65-98</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 FlowerNook. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Навигация
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // Поиск
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', function() {
+        console.log('Поиск:', this.value);
+      });
+    });
+  </script>
+</body>
+</html>

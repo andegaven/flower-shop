@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Конструктор букетов - FlowerNook</title>
+  <style>
+    :root {
+      --primary: #e83e8c;
+      --primary-dark: #d63384;
+      --secondary: #6c757d;
+      --light: #f8f9fa;
+      --dark: #343a40;
+      --white: #ffffff;
+      --background: #fff5f7;
+      --text: #212529;
+      --border: #dee2e6;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: var(--background);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
+
+    .search-bar {
+      flex: 1;
+      max-width: 500px;
+      margin: 0 20px;
+      position: relative;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 10px 15px 10px 40px;
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      font-size: 1rem;
+      transition: var(--transition);
+      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="%236c757d" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>');
+      background-repeat: no-repeat;
+      background-position: 15px center;
+    }
+
+    .search-bar input:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.25);
+    }
+
+    .user-actions {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .btn {
+      padding: 8px 16px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    nav {
+      background-color: var(--white);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-container {
+      display: flex;
+      overflow-x: auto;
+      padding: 10px 0;
+      scrollbar-width: none;
+    }
+
+    .nav-container::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-link {
+      padding: 12px 20px;
+      white-space: nowrap;
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      border-radius: 20px;
+      transition: var(--transition);
+      margin: 0 5px;
+      cursor: pointer;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    main {
+      padding: 20px 0;
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      margin-bottom: 20px;
+      color: var(--primary);
+      position: relative;
+      padding-bottom: 10px;
+      text-align: center;
+    }
+
+    .section-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background-color: var(--primary);
+    }
+
+    .constructor-description {
+      text-align: center;
+      margin-bottom: 30px;
+      color: var(--secondary);
+    }
+
+    .constructor-section {
+      margin-bottom: 40px;
+    }
+
+    .section-header {
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+      color: var(--primary);
+      border-bottom: 2px solid var(--primary);
+      padding-bottom: 5px;
+    }
+
+    .options-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .option-card {
+      background-color: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+    }
+
+    .option-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .option-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .option-info {
+      padding: 15px;
+    }
+
+    .option-title {
+      font-size: 1.1rem;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .option-price {
+      font-weight: 700;
+      color: var(--primary);
+      margin-bottom: 15px;
+      font-size: 1.2rem;
+    }
+
+    .add-btn {
+      background-color: var(--primary);
+      color: var(--white);
+      border: none;
+      padding: 8px 20px;
+      border-radius: 25px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      width: 100%;
+    }
+
+    .add-btn:hover {
+      background-color: var(--primary-dark);
+    }
+
+    footer {
+      background-color: var(--dark);
+      color: var(--white);
+      padding: 40px 0 20px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+      color: var(--white);
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+      padding-left: 5px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 0.9rem;
+    }
+
+    .back-to-main {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: var(--primary);
+      color: white;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .back-to-main:hover {
+      background-color: var(--primary-dark);
+    }
+
+    @media (max-width: 992px) {
+      .header-container {
+        flex-direction: column;
+        gap: 15px;
+      }
+      
+      .search-bar {
+        max-width: 100%;
+        margin: 10px 0;
+      }
+      
+      .user-actions {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .options-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      }
+    }
+
+    @media (max-width: 576px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container header-container">
+      <a href="#" class="logo">
+        <img src="images\\лого.jpg" alt="FlowerNook Logo">
+        FlowerNook
+      </a>
+      
+      <div class="search-bar">
+        <input type="text" placeholder="Поиск в конструкторе..." id="searchInput">
+      </div>
+      
+      <div class="user-actions">
+        <button class="btn btn-outline" onclick="location.href='cart.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5z"/>
+          </svg>
+          Корзина
+        </button>
+        <button class="btn btn-primary" onclick="location.href='registration_list.html'">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+          </svg>
+          Войти
+        </button>
+      </div>
+    </div>
+    
+    <nav>
+      <div class="nav-container">
+        <a href="index.html" class="nav-link">Главная</a>
+        <a href="catalog.html" class="nav-link">Каталог</a>
+        <a href="constructor.html" class="nav-link active">Конструктор букетов</a>
+        <a href="cart.html" class="nav-link">Корзина</a>
+        <a href="profile.html" class="nav-link">Профиль</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1 class="section-title">Конструктор букетов</h1>
+    <p class="constructor-description">Создайте свой уникальный букет из наших лучших цветов и аксессуаров</p>
+    
+    <div class="constructor-section">
+      <h2 class="section-header">Выберите цветы:</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <img src="images\\розы.jpg" alt="Розы" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Розы</h3>
+            <div class="option-price">от 150 ₽ за шт</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\лилии2.jpg" alt="Лилии" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Лилии</h3>
+            <div class="option-price">от 200 ₽ за шт</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\пионы2.jpg" alt="Пионы" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Пионы</h3>
+            <div class="option-price">от 250 ₽ за шт</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\тюльпаны.jpg" alt="Тюльпаны" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Тюльпаны</h3>
+            <div class="option-price">от 120 ₽ за шт</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="constructor-section">
+      <h2 class="section-header">Выберите упаковку:</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <img src="images\\крафт бумага.jpg" alt="Бумага" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Крафт бумага</h3>
+            <div class="option-price">300 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\пленка.jpg" alt="Пленка" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Прозрачная пленка</h3>
+            <div class="option-price">250 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\корзина.jpg" alt="Корзина" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Плетеная корзина</h3>
+            <div class="option-price">800 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\органза2.jpg" alt="Органза" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Органза</h3>
+            <div class="option-price">350 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="constructor-section">
+      <h2 class="section-header">Выберите дополнения:</h2>
+      <div class="options-grid">
+        <div class="option-card">
+          <img src="images\\зелень.jpg" alt="Зелень" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Зелень</h3>
+            <div class="option-price">200 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\ягоды.jpg" alt="Ягоды" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Декоративные ягоды</h3>
+            <div class="option-price">350 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\открытка.jpg" alt="Открытка" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Поздравительная открытка</h3>
+            <div class="option-price">150 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+        
+        <div class="option-card">
+          <img src="images\\мишка.jpg" alt="Мишка" class="option-image">
+          <div class="option-info">
+            <h3 class="option-title">Плюшевый мишка</h3>
+            <div class="option-price">1 200 ₽</div>
+            <button class="add-btn">Добавить в букет</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Магазин</h3>
+          <ul class="footer-links">
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Доставка и оплата</a></li>
+            <li><a href="#">Возврат и обмен</a></li>
+            <li><a href="#">Акции</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Каталог</h3>
+          <ul class="footer-links">
+            <li><a href="#">Букеты</a></li>
+            <li><a href="#">Цветы в корзинах</a></li>
+            <li><a href="#">Подарки</a></li>
+            <li><a href="#">Распродажа</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Контакты</h3>
+          <ul class="footer-links">
+            <li><a href="tel:+79517464858">+7 (951) 746-48-58</a></li>
+            <li><a href="mailto:info@flowernook.com">info@flowernook.com</a></li>
+            <li>Москва, ул. Цветочная, 15</li>
+            <li>Ежедневно с 9:00 до 21:00</li>
+          </ul>
+        </div>
+        
+        <div class="footer-column">
+          <h3>Подписаться</h3>
+          <p>Узнавайте первыми о новых поступлениях и акциях:</p>
+          <form class="subscribe-form">
+            <input type="email" placeholder="Ваш email" style="width: 100%; padding: 8px; margin-bottom: 10px; border-radius: 4px; border: 1px solid var(--border);">
+            <button type="submit" class="btn btn-primary" style="width: 100%;">Подписаться</button>
+          </form>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>© 2025 FlowerNook. Все права защищены.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Навигация
+      const navLinks = document.querySelectorAll('.nav-link');
+      navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+          navLinks.forEach(l => l.classList.remove('active'));
+          this.classList.add('active');
+        });
+      });
+
+      // Добавление в конструктор
+      const addButtons = document.querySelectorAll('.add-btn');
+      addButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const card = this.closest('.option-card');
+          const title = card.querySelector('.option-title').textContent;
+          const price = card.querySelector('.option-price').textContent;
+          alert(`"${title}" (${price}) добавлен в ваш букет!`);
+        });
+      });
+
+      // Поиск
+      const searchInput = document.getElementById('searchInput');
+      searchInput.addEventListener('input', function() {
+        const searchTerm = this.value.toLowerCase();
+        const optionCards = document.querySelectorAll('.option-card');
+        
+        optionCards.forEach(card => {
+          const title = card.querySelector('.option-title').textContent.toLowerCase();
+          
+          if (title.includes(searchTerm)) {
+            card.style.display = 'block';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
